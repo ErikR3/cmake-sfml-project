@@ -1,28 +1,27 @@
 #include <SFML/Graphics.hpp>
-#include "Character.cpp"
+#include "CharacterHandler.cpp"
 #include <iostream>
 #include <string>
 
-class inputHandler{
+class WindowHandler{
+
+    private: 
+        CharacterHandler CH;
+
     public:
     
+        WindowHandler()
+        {
+            CH = CharacterHandler();
+        }
     
 
         static void mainLoop()
     {
-        std::string filePath = "MainAfter.jpg";
 
         auto window = sf::RenderWindow({1920u, 1080u}, "CMake SFML Project");
         window.setFramerateLimit(60);
 
-        sf::Texture texture;
-
-        if(!texture.loadFromFile("MainAfter.jpg", sf::IntRect(10, 10, 32, 32)))
-        {
-            std::cout << "Fel vid inladdning av texture";
-        }
-
-        auto newCharacter = Character(100, texture, "Lord Erik");
 
         while (window.isOpen())
         {

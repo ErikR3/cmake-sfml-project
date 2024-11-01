@@ -1,9 +1,9 @@
-#include "inputHandler.cpp"
+#include "WindowHandler.cpp"
 #include <iostream>
 
 int main()
 {
-    inputHandler::mainLoop();
+    WindowHandler::mainLoop();
     std::cout << "Window closed, exiting program." << std::endl;
     return 0;
 }
