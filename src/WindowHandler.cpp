@@ -2,21 +2,31 @@
 #include "CharacterHandler.cpp"
 #include <iostream>
 #include <string>
+#include <vector>
 
 class WindowHandler{
 
     private: 
         CharacterHandler CH;
+        std::vector<sf::Sprite> SPV;
 
     public:
     
         WindowHandler()
         {
+            sf::Texture texture;
+            if(!texture.loadFromFile("assets/1/Attack2.png")){
+                std::cout << "Couldnt load texture";
+            }
+
+            
+
             CH = CharacterHandler();
+            CH.createSprite(texture, "Erik");
         }
     
 
-        static void mainLoop()
+        void mainLoop()
     {
 
         auto window = sf::RenderWindow({1920u, 1080u}, "CMake SFML Project");
@@ -34,6 +44,11 @@ class WindowHandler{
             }
 
             window.clear();
+
+            SPV = CH.getSprites();
+            CH.setAnimationRect("Erik");
+            window.draw(CH.getSprite("Erik"));
+            SPV.clear();
             
             window.display();
         }

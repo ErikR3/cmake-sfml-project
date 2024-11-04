@@ -20,13 +20,15 @@ class CharacterHandler{
 
         int getTime()
         {
-            return animationTimer.getElapsedTime().asSeconds() > 1.0f;
+            int frameIndex = static_cast<int>(animationTimer.getElapsedTime().asSeconds() / 0.2) % 6;
+
+            return frameIndex;
         }
 
-        void setAnimationFrane(std::string playerName)
+        void setAnimationFrame(std::string playerName)
         {
-            std::vector<Character> newCharList = characterList;
-            for(auto& ChEntry : newCharList)
+           
+            for(auto& ChEntry : characterList)
             {
                 if( ChEntry.getPlayerName() == playerName)
                 {
@@ -35,16 +37,20 @@ class CharacterHandler{
             }
         }
 
-        void setAnimationFrame(int clockTime)
+        void setAnimationRect(std::string playerName)
         {
+            int frameIndex = getTime();
+
             sf::IntRect newRect = rect;
-            if(getTime() == 0)
-            {
-                newRect.left = 42;
-            } else if (clockTime == 5) {
-                newRect.left = 0;
-            } else {
-                newRect.left = clockTime * 42;
+            newRect.left = frameIndex * rectDifference;
+
+            rect = newRect;
+
+            std::cout << rect.left << "\n";
+            setAnimationFrame(playerName);
+
+            if(frameIndex == 6){
+                animationTimer.restart();
             }
         }
 
@@ -74,4 +80,32 @@ class CharacterHandler{
 
             return spriteList;
         }
+
+        void printName(){
+            for (auto& chEntry : characterList){
+                	std::cout << chEntry.getPlayerName() << "\n";
+            }
+        }
+
+        void setPosition(sf::Vector2f newpos){
+            newpos = {200, 200};
+            for(auto& chEntry : characterList)
+            {
+                chEntry.setPosition(newpos);
+            }
+        }
+
+        sf::Sprite getSprite(std::string name)
+        {
+            sf::Sprite sp;
+            for(auto& chEntry : characterList)
+            {
+                if(chEntry.getPlayerName() == name){
+                    sp = chEntry.getSprite();
+                }
+            }
+
+            return sp;
+        }
+
 };

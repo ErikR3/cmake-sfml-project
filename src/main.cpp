@@ -3,7 +3,8 @@
 
 int main()
 {
-    WindowHandler::mainLoop();
+    WindowHandler wh = WindowHandler();
+    wh.mainLoop();
     std::cout << "Window closed, exiting program." << std::endl;
     return 0;
 }

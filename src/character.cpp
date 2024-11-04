@@ -16,12 +16,11 @@ class Character{
     
     public:
         Character(sf::Texture& texture, std::string playerName)
-            : hp(100), stamina(2), texture(texture), playerName(playerName), facingRight(true), isShooting(false)
+            : hp(100), stamina(2), texture(texture ), playerName(playerName), facingRight(true), isShooting(false)
         {
-            sprite.setTexture(texture);
             // Left, Top, Width, Height
             rect = {0, 0, 42, 42};
-            sprite.setTextureRect(rect);
+            sprite = sf::Sprite(texture, rect);
             sprite.setPosition(500, 500);
         }
 
