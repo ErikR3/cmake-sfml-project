@@ -30,7 +30,7 @@ class CharacterHandler{
             {
                 if( ChEntry.getPlayerName() == playerName)
                 {
-                    chEntry.setTextRect(newRect);
+                    ChEntry.setTextRect(rect);
                 }
             }
         }

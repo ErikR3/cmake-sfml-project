@@ -34,6 +34,7 @@ class WindowHandler{
             }
 
             window.clear();
+            
             window.display();
         }
     }
