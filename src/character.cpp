@@ -34,18 +34,6 @@ class Character{
 
         void setTextRect( sf::IntRect newTex ) { sprite.setTextureRect(newTex); }
 
-        void setSpriteNextAnimationFrame(int animationFrame) 
-        { 
-            sf::IntRect newRect = rect;
-            if(animationFrame == 0) {
-                newRect.left = 42;
-            } else if (animationFrame == 5) {
-                newRect.left = 0;
-            } else {
-                newRect.left = animationFrame * 42;
-            }
-            setTextRect(newRect);
-        }
         const sf::Sprite getSprite() const { return sprite; }
 
         const std::string getPlayerName() const {return playerName; }
