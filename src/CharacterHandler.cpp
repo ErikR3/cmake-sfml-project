@@ -15,7 +15,7 @@ class CharacterHandler{
         CharacterHandler()
         {
             animationTimer = sf::Clock();
-            
+            rect = {0,0,42,42};
         }
 
         int getTime()
@@ -27,14 +27,17 @@ class CharacterHandler{
 
         void setAnimationFrame(std::string playerName)
         {
-           
-            for(auto& ChEntry : characterList)
+           std::vector<Character> newCharList = characterList;
+
+            for(auto& ChEntry : newCharList)
             {
                 if( ChEntry.getPlayerName() == playerName)
                 {
                     ChEntry.setTextRect(rect);
                 }
             }
+
+            characterList = newCharList;
         }
 
         void setAnimationRect(std::string playerName)
@@ -87,7 +90,7 @@ class CharacterHandler{
             }
         }
 
-        void setPosition(sf::Vector2f newpos){
+        void setPosition(sf::Vector2f& newpos){
             newpos = {200, 200};
             for(auto& chEntry : characterList)
             {
@@ -95,17 +98,23 @@ class CharacterHandler{
             }
         }
 
-        sf::Sprite getSprite(std::string name)
-        {
-            sf::Sprite sp;
-            for(auto& chEntry : characterList)
-            {
-                if(chEntry.getPlayerName() == name){
-                    sp = chEntry.getSprite();
+        sf::Sprite& getSprite(const std::string& name) {
+            for (auto& chEntry : characterList) {
+                if (chEntry.getPlayerName() == name) {
+                    return chEntry.getSprite();
                 }
             }
+            throw std::runtime_error("Character not found");
+        }
 
-            return sp;
+        void printRect()
+        {
+            for (auto& chEntry : characterList) {
+                if (chEntry.getPlayerName() == "Erik")
+                {
+                    chEntry.printRect();
+                }
+            }
         }
 
 };

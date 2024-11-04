@@ -8,14 +8,14 @@ class WindowHandler{
 
     private: 
         CharacterHandler CH;
+        sf::Texture texture;
         std::vector<sf::Sprite> SPV;
 
     public:
     
         WindowHandler()
         {
-            sf::Texture texture;
-            if(!texture.loadFromFile("assets/1/Attack2.png")){
+            if(!texture.loadFromFile("assets/1/Run.png")){
                 std::cout << "Couldnt load texture";
             }
 
@@ -48,6 +48,7 @@ class WindowHandler{
             SPV = CH.getSprites();
             CH.setAnimationRect("Erik");
             window.draw(CH.getSprite("Erik"));
+            CH.printRect();
             SPV.clear();
             
             window.display();

@@ -31,9 +31,17 @@ class Character{
         float getStamina() const { return stamina; }
         void setStamina(float newStamina) { stamina = newStamina; }
 
-        void setTextRect( sf::IntRect newTex ) { sprite.setTextureRect(newTex); }
+        void setTextRect( sf::IntRect& newTex ) 
+        { 
+            rect = newTex;
+            sprite.setTextureRect(rect); 
+        }
 
-        const sf::Sprite getSprite() const { return sprite; }
+        void printRect(){
+            std::cout << rect.left << " " << rect.top << " " << rect.height << " " << rect.width << std::endl;
+        }
+
+        sf::Sprite& getSprite() { return sprite; }
 
         const std::string getPlayerName() const {return playerName; }
 
