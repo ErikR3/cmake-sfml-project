@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+#include <fstream>
 
 class Character{
     private:
@@ -10,9 +11,11 @@ class Character{
         float hp;
         float stamina;
         sf::Texture texture;
+        std::vector<sf::Texture> textureList;
         sf::Sprite sprite; 
         sf::IntRect rect;
         sf::Vector2f position;
+        std::string state;
     
     public:
         Character(sf::Texture& texture, std::string playerName)
@@ -22,6 +25,7 @@ class Character{
             rect = {0, 0, 42, 42};
             sprite = sf::Sprite(texture, rect);
             sprite.setPosition(500, 500);
+            initiateTextures("1");
         }
 
 
@@ -53,4 +57,33 @@ class Character{
 
         const sf::Vector2f getPosition() const { return position; }
         void setPosition(sf::Vector2f newPos) { position = newPos; sprite.setPosition(position); }
+
+        void setTexture(int index){ }
+
+        void initiateTextures(std::string playerModel){
+            std::ifstream file("textures.txt");
+            if(!file){
+                std::cout << "File couldn't open" << std::endl;
+            }
+
+            std::vector<std::string> ord;
+            std::string str;
+
+            while(file >> str){
+                ord.push_back(str);
+            }
+
+            for (auto& text : ord){
+                sf::Texture newTexture;
+                text = "assets/" + playerModel + "/" + text + ".png";
+
+                if(!newTexture.loadFromFile(text)){
+                    std::cout << "Texture model: " << text << " couldn't load" << std::endl;
+                }
+                textureList.push_back(newTexture);
+
+            }
+
+            file.close();
+        }
 };

@@ -18,9 +18,9 @@ class CharacterHandler{
             rect = {0,0,42,42};
         }
 
-        int getTime()
+        int getTime(int frameAmount)
         {
-            int frameIndex = static_cast<int>(animationTimer.getElapsedTime().asSeconds() / 0.2) % 6;
+            int frameIndex = static_cast<int>(animationTimer.getElapsedTime().asSeconds() / 0.2) % frameAmount;
 
             return frameIndex;
         }
@@ -40,16 +40,15 @@ class CharacterHandler{
             characterList = newCharList;
         }
 
-        void setAnimationRect(std::string playerName)
+        void setAnimationRect(std::string playerName, int frameAmount)
         {
-            int frameIndex = getTime();
+            int frameIndex = getTime(frameAmount);
 
             sf::IntRect newRect = rect;
             newRect.left = frameIndex * rectDifference;
 
             rect = newRect;
 
-            std::cout << rect.left << "\n";
             setAnimationFrame(playerName);
 
             if(frameIndex == 6){

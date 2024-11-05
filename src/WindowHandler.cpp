@@ -46,9 +46,12 @@ class WindowHandler{
             window.clear();
 
             SPV = CH.getSprites();
-            CH.setAnimationRect("Erik");
-            window.draw(CH.getSprite("Erik"));
-            CH.printRect();
+            CH.setAnimationRect("Erik", 4);
+            for (auto& sprite : SPV)
+            {
+                
+                window.draw(sprite);
+            }
             SPV.clear();
             
             window.display();
