@@ -116,4 +116,24 @@ class CharacterHandler{
             }
         }
 
+        void invertSprite(std::string playerName){
+            for(auto& chEntry : characterList)
+            {
+                if(chEntry.getPlayerName() == playerName)
+                {
+                    chEntry.invertSprite();
+                }
+            }
+        }
+
+        void revertSprite(std::string playerName){
+            for(auto& chEntry : characterList)
+            {
+                if(chEntry.getPlayerName() == playerName)
+                {
+                    chEntry.revertSprite();
+                }
+            }
+        }
+
 };

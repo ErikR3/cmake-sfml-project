@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "CharacterHandler.cpp"
+#include "InputHandler.cpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,6 +11,7 @@ class WindowHandler{
         CharacterHandler CH;
         sf::Texture texture;
         std::vector<sf::Sprite> SPV;
+        
 
     public:
     

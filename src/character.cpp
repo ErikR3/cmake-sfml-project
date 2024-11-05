@@ -5,11 +5,19 @@
 
 class Character{
     private:
+
+        // förklarar hur gubben ser ut
         bool facingRight;
         bool isShooting;
-        std::string playerName;
+        
+        //Player status
         float hp;
         float stamina;
+
+        //Typ id kan man säga
+        std::string playerName;
+
+        //Allt som har med sprite att göra
         sf::Texture texture;
         std::vector<sf::Texture> textureList;
         sf::Sprite sprite; 
@@ -28,6 +36,15 @@ class Character{
             initiateTextures("1");
         }
 
+        void invertSprite()
+        {
+            sprite.setScale(1.f, -1.f);
+        }
+
+        void revertSprite()
+        {
+            sprite.setScale(1.f, 1.f);
+        }
 
         float getHp() const {return hp;}
         void setHp(float newHp) { hp = newHp; }
@@ -58,7 +75,11 @@ class Character{
         const sf::Vector2f getPosition() const { return position; }
         void setPosition(sf::Vector2f newPos) { position = newPos; sprite.setPosition(position); }
 
-        void setTexture(int index){ }
+        void setStateTexture(int index){ 
+            sf::Texture newTexture;
+            newTexture = textureList[index];
+            sprite.setTexture(newTexture);
+        }
 
         void initiateTextures(std::string playerModel){
             std::ifstream file("textures.txt");
